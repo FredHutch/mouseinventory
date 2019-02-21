@@ -27,3 +27,33 @@ COPY serverFiles/tomcat/tomcat-users.xml /var/lib/tomcat6/conf/tomcat-users.xml
 
 COPY serverFiles/tomcat/context.xml /var/lib/tomcat6/conf/context.xml
 
+WORKDIR /mouseinventory/
+
+ENV JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
+
+# this will fail till fixed:
+# (needs tomcat to be running)
+RUN mvn package
+
+RUN cp target/mouseinventory.war /var/lib/tomcat6/webapps/ROOT/
+
+WORKDIR /var/lib/tomcat6/bin
+
+EXPOSE 8080
+
+# RUN mkdir /usr/share/tomcat6/temp
+
+CMD ["./catalina.sh", "run"]
+
+# results in:
+
+# Feb 21, 2019 4:29:59 AM org.apache.catalina.startup.Catalina load
+# WARNING: Can't load server.xml from /usr/share/tomcat6/conf/server.xml
+# Feb 21, 2019 4:29:59 AM org.apache.catalina.startup.Catalina load
+# WARNING: Can't load server.xml from /usr/share/tomcat6/conf/server.xml
+# Feb 21, 2019 4:29:59 AM org.apache.catalina.startup.Catalina start
+# SEVERE: Cannot start server. Server instance is not configured.
+
+# TODO: multi-stage build? 
+# 1) create war
+# 2) deploy in tomcat container
