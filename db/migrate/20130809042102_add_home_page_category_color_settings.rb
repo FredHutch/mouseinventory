@@ -1,4 +1,4 @@
-class AddHomePageCategoryColorSettings < ActiveRecord::Migration
+class AddHomePageCategoryColorSettings < ActiveRecord::Migration[4.2]
   def up
     execute <<-EOF
   INSERT INTO `settings` (`category_id`, `name`, `label`, `setting_value`, `secondary_value`)

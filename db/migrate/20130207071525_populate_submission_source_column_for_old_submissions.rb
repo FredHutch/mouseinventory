@@ -1,4 +1,4 @@
-class PopulateSubmissionSourceColumnForOldSubmissions < ActiveRecord::Migration
+class PopulateSubmissionSourceColumnForOldSubmissions < ActiveRecord::Migration[4.2]
   def change
     ['MGI Submission tool',
 	 'Purchase Data Upload (PDU)',

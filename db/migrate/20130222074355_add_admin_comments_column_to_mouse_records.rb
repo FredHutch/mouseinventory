@@ -1,4 +1,4 @@
-class AddAdminCommentsColumnToMouseRecords < ActiveRecord::Migration
+class AddAdminCommentsColumnToMouseRecords < ActiveRecord::Migration[4.2]
   def up
     add_column :mouse, :admin_comment, :text
   end

@@ -1,4 +1,4 @@
-class AddChangeRequestFields < ActiveRecord::Migration
+class AddChangeRequestFields < ActiveRecord::Migration[4.2]
   def up
     add_column :changerequest, :facility_id, :integer;
     add_column :changerequest, :facility_name, :string, :limit => 255;

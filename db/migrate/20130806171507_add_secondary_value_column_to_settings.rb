@@ -1,4 +1,4 @@
-class AddSecondaryValueColumnToSettings < ActiveRecord::Migration
+class AddSecondaryValueColumnToSettings < ActiveRecord::Migration[4.2]
   def up
 	add_column :settings, :secondary_value, :string
   end

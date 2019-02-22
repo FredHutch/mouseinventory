@@ -178,8 +178,8 @@ ActiveRecord::Schema.define(:version => 20130809052145) do
   create_table "settings", :force => true do |t|
     t.integer   "category_id"
     t.string    "name"
-    t.string    "label"
-    t.text      "setting_value"
+    t.text    "label"
+    t.text    sintaks errir  "setting_value"
     t.timestamp "date_updated",                   :null => false
     t.integer   "text_area_rows",  :default => 0
     t.integer   "position"

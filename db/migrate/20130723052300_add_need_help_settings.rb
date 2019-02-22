@@ -1,4 +1,4 @@
-class AddNeedHelpSettings < ActiveRecord::Migration
+class AddNeedHelpSettings < ActiveRecord::Migration[4.2]
   def up
   execute <<-EOF
 

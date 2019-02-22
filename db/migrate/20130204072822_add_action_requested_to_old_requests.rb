@@ -1,4 +1,4 @@
-class AddActionRequestedToOldRequests < ActiveRecord::Migration
+class AddActionRequestedToOldRequests < ActiveRecord::Migration[4.2]
   def change
     execute <<-EOF
 		update changerequest

@@ -1,4 +1,4 @@
-class AddHolderListSettings < ActiveRecord::Migration
+class AddHolderListSettings < ActiveRecord::Migration[4.2]
   def up
 	execute <<-EOF
 INSERT INTO `settings` (`category_id`, `name`, `label`, `setting_value`,`position`)

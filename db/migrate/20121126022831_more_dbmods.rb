@@ -1,4 +1,4 @@
-class MoreDbmods < ActiveRecord::Migration
+class MoreDbmods < ActiveRecord::Migration[4.2]
   def up
 
     execute <<-EOF

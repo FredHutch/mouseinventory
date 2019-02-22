@@ -1,4 +1,4 @@
-class RemoveManualDownloadSetting < ActiveRecord::Migration
+class RemoveManualDownloadSetting < ActiveRecord::Migration[4.2]
   def up
     execute "delete from settings where name='download_files_manual' and category_id=8"
   end

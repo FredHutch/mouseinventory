@@ -1,4 +1,4 @@
-class AddSettings < ActiveRecord::Migration
+class AddSettings < ActiveRecord::Migration[4.2]
   def up
     execute <<-EOF
 

@@ -11,8 +11,10 @@ production:
   reconnect: false
   database: mouse_inventory
   pool: 5
-  username: root
-  password:
+  username: <%= ENV['DBUSER'] %>
+  password: <%= ENV['DBPASSWORD'] %>
+  host: <%= ENV['DBHOST'] %>
+  port: <%= ENV['DBPORT'] %>
 
 test: &test
   adapter: mysql2

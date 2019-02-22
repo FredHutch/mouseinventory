@@ -1,4 +1,4 @@
-class AddPositionToSettings < ActiveRecord::Migration
+class AddPositionToSettings < ActiveRecord::Migration[4.2]
   def up
 	  add_column :settings, :position, :int
   end

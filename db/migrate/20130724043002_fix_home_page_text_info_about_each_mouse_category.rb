@@ -1,4 +1,4 @@
-class FixHomePageTextInfoAboutEachMouseCategory < ActiveRecord::Migration
+class FixHomePageTextInfoAboutEachMouseCategory < ActiveRecord::Migration[4.2]
   def up
 	execute "update settings set category_id=2 where name='home_page_text_information_about_each_mouse'"
   end

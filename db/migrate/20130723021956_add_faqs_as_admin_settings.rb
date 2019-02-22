@@ -1,4 +1,4 @@
-class AddFaqsAsAdminSettings < ActiveRecord::Migration
+class AddFaqsAsAdminSettings < ActiveRecord::Migration[4.2]
   def up
   execute <<-EOF
 

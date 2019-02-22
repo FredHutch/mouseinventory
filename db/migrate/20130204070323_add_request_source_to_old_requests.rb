@@ -1,4 +1,4 @@
-class AddRequestSourceToOldRequests < ActiveRecord::Migration
+class AddRequestSourceToOldRequests < ActiveRecord::Migration[4.2]
   def change
     ['PI to PI Transfer Report',
 	 'PI to PI Transfer Import',

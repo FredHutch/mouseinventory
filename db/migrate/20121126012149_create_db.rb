@@ -1,4 +1,4 @@
-class CreateDb < ActiveRecord::Migration
+class CreateDb < ActiveRecord::Migration[4.2]
   def up
     create_table "changerequest", :force => true do |t|
       t.integer "mouse_id"
@@ -149,7 +149,7 @@ class CreateDb < ActiveRecord::Migration
     create_table "settings", :force => true do |t|
       t.integer   "category_id"
       t.string    "name"
-      t.string    "label"
+      t.text    "label"
       t.text      "setting_value"
       t.timestamp "date_updated",  :null => false
     end
