@@ -5,7 +5,7 @@
 
 # and run me like this:
 
-# docker run --name mouse -e DBURL=$DBURL -e DBUSER=$DBUSER -e DBPASSWORD=$DBPASSWORD -e DBHOST=$DBHOST -e DBPORT=$DBPORT -p 8080:8080 fredhutch/mouseinventory
+# docker run --name mouse -e DBURL=$DBURL -e DBUSER=$DBUSER -e DBPASSWORD=$DBPASSWORD -e DBHOST=$DBHOST -e DBPORT=$DBPORT -e ADMINPASSWORD=$ADMINPASSWORD -p 8080:8080 fredhutch/mouseinventory
 
 FROM ubuntu:14.04
 
@@ -50,17 +50,12 @@ FROM tomcat:7.0.93-jre7
 
 RUN rm -rf $CATALINA_HOME/webapps/*
 
-# COPY --from=0 /mouseinventory/target/mouseinventory.war $CATALINA_HOME/webapps/ROOT.war
-
 COPY --from=0 /mouseinventory/target/mouseinventory.war $CATALINA_HOME/webapps/
 
 
-COPY serverFiles/tomcat/tomcat-users.xml $CATALINA_HOME/conf/tomcat-users.xml
-
+COPY serverFiles/tomcat/tomcat-users.xml /tmp/
 
 COPY serverFiles/tomcat/context.xml /tmp/
-
-# COPY overall.web.xml $CATALINA_HOME/conf/web.xml
 
 RUN mkdir -p $CATALINA_HOME/webapps/ROOT/
 

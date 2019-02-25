@@ -12,6 +12,10 @@ echo $JAVA_OPTS
 
 cat /tmp/context.xml | sed -e "s/DBUSER/$DBUSER/" -e "s/DBPASSWORD/$DBPASSWORD/" -e "s/DBURL/jdbc:mysql:\/\/$DBHOST:$DBPORT\/mouse_inventory/" > $CATALINA_HOME/conf/context.xml
 
+
+cat /tmp/tomcat-users.xml | sed "s/ADMIN_PASSWORD/$ADMINPASSWORD/" > $CATALINA_HOME/conf/tomcat-users.xml
+
+
 $CATALINA_HOME/bin/catalina.sh run
 
 
