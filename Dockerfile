@@ -1,8 +1,12 @@
 # build me as fredhutch/mouseinventory
 # like this (after sourcing setup.sh):
+
 # docker build --build-arg DBUSER=$DBUSER --build-arg DBHOST=$DBHOST --build-arg DBPORT=$DBPORT --build-arg DBPASSWORD=$DBPASSWORD    -t fredhutch/mouseinventory .
+
 # and run me like this:
-# docker run --rm -e DBURL=$DBURL -e DBUSER=$DBUSER -e DBPASSWORD=$DBPASSWORD -e DBHOST=$DBHOST -e DBPORT=$DBPORT -p 8080:8080 fredhutch/mouseinventory
+
+# docker run --name mouse -e DBURL=$DBURL -e DBUSER=$DBUSER -e DBPASSWORD=$DBPASSWORD -e DBHOST=$DBHOST -e DBPORT=$DBPORT -p 8080:8080 fredhutch/mouseinventory
+
 FROM ubuntu:14.04
 
 RUN apt-get update -y 
@@ -37,34 +41,30 @@ ENV JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
 
 RUN mvn package
 
-# end of first build
+# end of first stage
+
+# second stage:
 
 FROM tomcat:7.0.93-jre7
 
+
 RUN rm -rf $CATALINA_HOME/webapps/*
 
-COPY --from=0 /mouseinventory/target/mouseinventory.war $CATALINA_HOME/webapps/ROOT.war
+# COPY --from=0 /mouseinventory/target/mouseinventory.war $CATALINA_HOME/webapps/ROOT.war
+
+COPY --from=0 /mouseinventory/target/mouseinventory.war $CATALINA_HOME/webapps/
+
 
 COPY serverFiles/tomcat/tomcat-users.xml $CATALINA_HOME/conf/tomcat-users.xml
 
-# COPY serverFiles/tomcat/context.xml $CATALINA_HOME/conf/context.xml
 
 COPY serverFiles/tomcat/context.xml /tmp/
 
+# COPY overall.web.xml $CATALINA_HOME/conf/web.xml
 
+RUN mkdir -p $CATALINA_HOME/webapps/ROOT/
 
-# RUN curl -LO https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java_8.0.15-1debian9_all.deb
-
-# RUN dpkg -i mysql-connector-java_8.0.15-1debian9_all.deb
-
-# RUN cp /usr/share/java/mysql-connector-java-8.0.15.jar $CATALINA_HOME/lib/
-
-RUN curl -L https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.47.zip > /tmp/mysqlconnector.zip
-
-RUN unzip /tmp/mysqlconnector.zip -d /tmp/
-
-RUN cp /tmp/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47-bin.jar $CATALINA_HOME/lib/
-
+COPY index.jsp $CATALINA_HOME/webapps/ROOT/
 
 COPY start.sh .
 
