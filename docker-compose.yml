@@ -1,0 +1,37 @@
+version: '2'
+services:
+  mouseinventory:
+    image: dockerimages.fhcrc.org/mouseinventory:latest
+
+    labels:
+      io.rancher.container.pull_image: always
+
+    restart: always
+
+    secrets:
+    - DBURL
+    - DBUSER
+    - DBPASSWORD
+    - DBHOST
+    - DBPORT
+    - ADMINPASSWORD
+    - MGIPASSWORD
+
+secrets:
+  DBURL:
+    external: true
+  DBUSER:
+    external: true
+  DBPASSWORD:
+    external: true
+  DBPASSWORD:
+    external: true
+  DBHOST:
+    external: true
+  DBPORT:
+    external: true
+  ADMINPASSWORD:
+    external: true
+  MGIPASSWORD:
+    external: true
+                          

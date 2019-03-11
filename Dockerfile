@@ -5,7 +5,7 @@
 
 # and run me like this:
 
-# docker run --name mouse -e DBURL=$DBURL -e DBUSER=$DBUSER -e DBPASSWORD=$DBPASSWORD -e DBHOST=$DBHOST -e DBPORT=$DBPORT -e ADMINPASSWORD=$ADMINPASSWORD -p 8080:8080 fredhutch/mouseinventory
+# docker run --name mouse -e DBURL=$DBURL -e DBUSER=$DBUSER -e DBPASSWORD=$DBPASSWORD -e DBHOST=$DBHOST -e DBPORT=$DBPORT -e ADMINPASSWORD=$ADMINPASSWORD -e MGIPASSWORD=$MGIPASSWORD  -p 8080:8080 fredhutch/mouseinventory ./start.sh
 
 FROM ubuntu:14.04
 
@@ -63,4 +63,12 @@ COPY index.jsp $CATALINA_HOME/webapps/ROOT/
 
 COPY start.sh .
 
-CMD ./start.sh
+
+CMD ["/bin/sh", "-c", "DBPASSWORD=`cat /run/secrets/DBPASSWORD` \
+    DBHOST=`cat /run/secrets/DBHOST` \
+    DBPORT=`cat /run/secrets/DBPORT` \
+    DBUSER=`cat /run/secrets/DBUSER` \
+    DBURL=`cat /run/secrets/DBURL` \
+    ADMINPASSWORD=`cat /run/secrets/ADMINPASSWORD` \
+    MGIPASSWORD=`cat /run/secrets/MGIPASSWORD` \
+    ./start.sh"]
