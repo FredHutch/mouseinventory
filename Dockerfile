@@ -35,7 +35,7 @@ ARG DBPASSWORD
 ARG DBPORT
 ARG DBUSER
 
-RUN rake db:migrate DB=production
+# RUN rake db:migrate DB=production
 
 ENV JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
 
