@@ -22,7 +22,7 @@ test:
       -e ADMINPASSWORD=$ADMINPASSWORD \
       -e MGIPASSWORD=$MGIPASSWORD \
       dockerimages.fhcrc.org/mouseinventory:latest ./start.sh"
-    - sleep 15 && curl --retry 10 --retry-delay 5 -v http://${BUILD_HOST}:8080
+    - sleep 15 && curl --retry 10 --retry-delay 5 -v http://${BUILD_HOST}:8080/mouseinventory/ | grep "^HTTP" | grep "200 OK"
     - docker stop mouseinventory && docker rm --force mouseinventory
 
 deployment:
