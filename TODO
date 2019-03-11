@@ -1,3 +1,5 @@
 - test that smtp server works
-- configure MGI SQL url
-- circle/rancher deployment
+- configure MGI SQL url (works?)
+- if we are really not going to migrate the DB on CI build,
+  then remove stuff we don't need from Dockerfile (build arg, arg, etc.).
+  
