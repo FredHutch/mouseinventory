@@ -11,15 +11,7 @@ build_test:
         then
           docker stop mouseinventory && docker rm --force mouseinventory
         fi
-     - "docker run -d --name mouseinventory -p 8080:8080 \
-        -e DBURL=$DBURL \
-        -e DBUSER=$DBUSER \
-        -e DBPASSWORD=$DBPASSWORD \
-        -e DBHOST=$DBHOST \
-        -e DBPORT=$DBPORT \
-        -e ADMINPASSWORD=$ADMINPASSWORD \
-        -e MGIPASSWORD=$MGIPASSWORD \
-        dockerimages.fhcrc.org/mouseinventory:latest ./start.sh"
+    - "docker run -d --name mouseinventory -p 8080:8080 -e DBURL=$DBURL -e DBUSER=$DBUSER -e DBPASSWORD=$DBPASSWORD -e DBHOST=$DBHOST -e DBPORT=$DBPORT -e ADMINPASSWORD=$ADMINPASSWORD -e MGIPASSWORD=$MGIPASSWORD dockerimages.fhcrc.org/mouseinventory:latest ./start.sh"
     - sleep 15 && curl --silent -I http://localhost:8080/mouseinventory/about.jsp | grep "^HTTP" | grep "200 OK"
     - docker stop mouseinventory && docker rm --force mouseinventory
 
