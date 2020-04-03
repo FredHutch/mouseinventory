@@ -45,7 +45,7 @@ RUN mvn package
 
 # second stage:
 
-FROM tomcat:7.0.93-jre7
+FROM tomcat:7.0.93-jre8
 
 
 RUN rm -rf $CATALINA_HOME/webapps/*
