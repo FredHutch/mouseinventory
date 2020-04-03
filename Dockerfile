@@ -7,11 +7,11 @@
 
 # docker run --name mouse -e DBURL=$DBURL -e DBUSER=$DBUSER -e DBPASSWORD=$DBPASSWORD -e DBHOST=$DBHOST -e DBPORT=$DBPORT -e ADMINPASSWORD=$ADMINPASSWORD -e MGIPASSWORD=$MGIPASSWORD  -p 8080:8080 fredhutch/mouseinventory ./start.sh
 
-FROM ubuntu:14.04
+FROM ubuntu:18.04
 
 RUN apt-get update -y 
 
-RUN apt-get install -y maven2 openjdk-6-jdk make curl software-properties-common libmysqlclient-dev libxml2 libxml2-dev zlib1g-dev liblzma-dev build-essential patch
+RUN apt-get install -y maven openjdk-8-jdk make curl software-properties-common libmysqlclient-dev libxml2 libxml2-dev zlib1g-dev liblzma-dev build-essential patch
 
 RUN apt-add-repository -y  ppa:brightbox/ruby-ng
 
@@ -37,7 +37,7 @@ ARG DBUSER
 
 # RUN rake db:migrate DB=production
 
-ENV JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
 RUN mvn package
 
